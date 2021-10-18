@@ -20,7 +20,7 @@ function manage_routes() {
 
     cat < "$RANGES" | while IFS= read -r line
     do
-        sudo /sbin/route "$ACTION" -net $pref "$line" "$GW_IP"
+        sudo /sbin/route "$ACTION" -net "$line" "$pref" "$GW_IP"
     done
     echo "Added routes$(wc -l "$RANGES"|cut -d/ -f-1)" |adate| tee -a "$LOG"
 }
