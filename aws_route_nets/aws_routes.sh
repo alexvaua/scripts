@@ -56,7 +56,7 @@ function main() {
             if [ "$EXIST_ROUTE" -ne 0 ]; then
                 change_routes
             else
-                echo "Looks like routes are presented in the route table, grep code: $EXIST_ROUTE" |adate| tee -a "$LOG"
+                echo "Looks like aws routes already presented, grep code: $EXIST_ROUTE" |adate| tee -a "$LOG"
             fi
         fi
     fi
