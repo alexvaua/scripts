@@ -15,7 +15,7 @@ Also please make sure that target GW has related gate to machine where you run t
 ```
 bash ./aws_routes.sh
 ```
-By deffault it will will behave like `route add -net 54.245.168.0/26 192.168.1.1`
+By deffault it will behave like `route add -net 54.245.168.0/26 192.168.1.1`
 
 ### Parameters can be manage via variables like:
 

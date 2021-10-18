@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 OS=$(uname)
-NOW=$(date +%Y-%m-%d,%H:%M)
+NOW=$(date +%Y-%m-%d\ %H:%M:%S)
 ACTION=${ACTION:-add}
 GW_IP=${GW_IP:-"192.168.1.1"}
 CURRENT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -10,6 +10,8 @@ LOG="$CURRENT_DIR"/$(basename "$0"|cut -d. -f-1).log
 PING_STAT=$(ping -c2 "$GW_IP" > /dev/null; echo $?)
 
 function adate() {
+    NOW=$(echo "$NOW"|awk -F- 'BEGIN{split("Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",m,",")}
+    {print m[$2], substr($0,9)}')
     while IFS= read -r line; do
         printf '%s %s\n' "$NOW" "$line";
     done
