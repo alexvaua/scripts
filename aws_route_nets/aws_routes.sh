@@ -51,7 +51,7 @@ function main() {
         get_ranges
         change_routes
     else
-        EXIST_ROUTE=$(netstat -nr4|awk '{print $1}'|grep -q $(head -n1 "$RANGES"); echo $?)
+        EXIST_ROUTE=$(netstat -nr4|awk '{print $1}'|grep -q "$(head -n1 "$RANGES")"; echo $?)
         if [ $(( $(date +%s) - $( if [ "$OS" == "Linux" ]; then date +%s -r "$RANGES"; else stat -f %m "$RANGES"; fi) )) -gt 43200 ]; then
             echo "$RANGES was no modified in last 12 Hours(43200s)" |adate| tee -a "$LOG"
             get_ranges
