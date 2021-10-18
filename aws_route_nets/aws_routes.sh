@@ -16,11 +16,11 @@ function adate() {
  }
 
 function manage_routes() {
-    if [[ $OS == "Linux" ]]; then pref=gw; else pref=""; fi
+    if [[ $OS == "Linux" ]]; then pref=gw; else pref=; fi
 
     cat < "$RANGES" | while IFS= read -r line
     do
-        sudo /sbin/route "$ACTION" -net "$line" "$pref" "$GW_IP"
+        sudo /sbin/route "$ACTION" -net "$line" $pref "$GW_IP"
     done
     echo "$ACTION routes $(wc -l "$RANGES"|cut -d/ -f-1)" |adate| tee -a "$LOG"
 }
