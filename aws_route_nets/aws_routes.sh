@@ -9,8 +9,6 @@ LOG="$CURRENT_DIR"/$(basename "$0"|cut -d. -f-1).log
 
 PING_STAT=$(ping -c2 "$GW_IP" > /dev/null; echo $?)
 
-[ "$ACTION" == "del" ] || ACTION="delete"
-
 function adate() {
     while IFS= read -r line; do
         printf '%s %s\n' "$NOW" "$line";
@@ -18,13 +16,11 @@ function adate() {
  }
 
 function manage_routes() {
+    if [[ $OS == "Linux" ]]; then pref=gw; else pref=""; fi
+
     cat < "$RANGES" | while IFS= read -r line
     do
-        if [[ $OS == "Linux" ]]; then
-            sudo /sbin/route "$ACTION" -net "$line" gw "$GW_IP" 
-        else
-            sudo /sbin/route "$ACTION" -net "$line" "$GW_IP"
-        fi
+        sudo /sbin/route "$ACTION" -net $pref "$line" "$GW_IP"
     done
     echo "Added routes$(wc -l "$RANGES"|cut -d/ -f-1)" |adate| tee -a "$LOG"
 }
@@ -55,7 +51,6 @@ function main() {
         get_ranges
         change_routes
     else
-        change_routes
         EXIST_ROUTE=$(netstat -nr4|awk '{print $1}'|grep -q "$(head -n1 "$RANGES" \
         |awk -F":" '{gsub(/"/, "", $2); print $2}'|cut -d"," -f1|cut -d" " -f2-)"; echo $?)
         if [ $(( $(date +%s) - $(stat -f %m "$RANGES") )) -gt 43200 ]; then
