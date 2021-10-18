@@ -47,7 +47,8 @@ function main() {
         get_ranges
         change_routes
     else
-        EXIST_ROUTE=$(netstat -nr4|awk '{print $1}' | grep -q "$(head -n1 "$RANGES" | awk -F":" '{gsub(/"/, "", $2); print $2}'| cut -d"," -f1 | cut -d" " -f2-)"; echo $?)
+        EXIST_ROUTE=$(netstat -nr4|awk '{print $1}'|grep -q "$(head -n1 "$RANGES" \
+        |awk -F":" '{gsub(/"/, "", $2); print $2}'|cut -d"," -f1|cut -d" " -f2-)"; echo $?)
         if [ $(( $(date +%s) - $(stat -f %m "$RANGES") )) -gt 43200 ]; then
             echo "$RANGES was no modified in last 12 Hours(43200s)" |adate| tee -a "$LOG"
             get_ranges
