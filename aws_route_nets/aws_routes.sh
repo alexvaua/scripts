@@ -10,8 +10,8 @@ LOG="$CURRENT_DIR"/$(basename "$0"|cut -d. -f-1).log
 PING_STAT=$(ping -c2 "$GW_IP" > /dev/null; echo $?)
 
 function adate() {
-    NOW=$(echo "$NOW"|awk -F- 'BEGIN{split("Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec",m,",")}
-    {print m[$2], substr($0,9)}')
+    NOW=$(echo "$NOW"| awk -F- '{print substr("JanFebMarAprMayJunJulAugSepOctNovDec",
+         $2*3-2,3), substr($0,9)}')
     while IFS= read -r line; do
         printf '%s %s\n' "$NOW" "$line";
     done
