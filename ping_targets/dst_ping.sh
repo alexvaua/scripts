@@ -7,15 +7,17 @@ HOST=$(cat /etc/hostname).mixua.net
 TARGETS="AntonHomeSW HomeStolbSW GaponStolbRT MaslukStolbRT TulnovaHomeRT"
 
 function push_slack() {
-        if [[ -n "$results" ]] && [[ ! -f tmp.txt ]] ; then
+        if [[ -n "$results" ]] || [[ ! -f tmp.txt ]] ; then
                 STATUS=warning
                 echo $STATUS > tmp.txt
 		echo "$results" |grep -E  "failure|denied" > /dev/null && STATUS=danger
                 echo "$results" |/usr/local/bin/slacktee.sh -u "$HOST" -t "$APP" -a $STATUS -e "cron date" "$(date)"
-        else    
-                echo "Connection restored $results" | \
-                /usr/local/bin/slacktee.sh -u "$HOST" -t "$APP" -a good -e "cron date" "$(date)"
-                rm tmp.txt
+        else 
+                if [[ -f tmp.txt ]] ; then
+                        echo "Connection restored $results" | \
+                        /usr/local/bin/slacktee.sh -u "$HOST" -t "$APP" -a good -e "cron date" "$(date)"
+                        rm tmp.txt
+                fi
         fi
 }
 
