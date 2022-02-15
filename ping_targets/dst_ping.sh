@@ -7,7 +7,7 @@ HOST=$(cat /etc/hostname).mixua.net
 TARGETS="AntonHomeSW HomeStolbSW GaponStolbRT MaslukStolbRT TulnovaHomeRT"
 
 function push_slack() {
-        if [[ -n "$results" ]] || [[ ! -f tmp.txt ]] ; then
+        if [[ -n "$results" ]] && [[ ! -f tmp.txt ]] ; then
                 STATUS=warning
                 echo "$results" > tmp.txt
 		echo "$results" |grep -E  "failure|denied" > /dev/null && STATUS=danger
