@@ -14,7 +14,7 @@ function push_slack() {
                 echo "$results" |/usr/local/bin/slacktee.sh -u "$HOST" -t "$APP" -a $STATUS -e "cron date" "$(date)"
         else
                 if [ -f tmp.txt ] ; then
-                        echo "Connection restored $results" | \
+                        echo "Connection to $1 restored $results" | \
                         /usr/local/bin/slacktee.sh -u "$HOST" -t "$APP" -a good -e "cron date" "$(date)"
                         rm tmp.txt
                 fi
@@ -24,6 +24,6 @@ function push_slack() {
 for i in $TARGETS; do
 	results=$(ping_result=$(ping -q -W3 -c2 "$i" | grep -E "failure|timeout|Unreachable|denied|100% packet loss")
 	[[ -z "$ping_result" ]] && echo > /dev/null || echo "dst $i $ping_result")
-	push_slack;
+	push_slack "$i";
 done
 
