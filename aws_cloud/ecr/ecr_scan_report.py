@@ -178,8 +178,8 @@ def scan_report_it_or_not(ctx, img_obj):
     image_digest = img_obj["imageDigest"][-5:]
     try:
         message = (
-            f"ImageDigestLast5: {image_digest}, "
-            f"ImageAge: {image_age}, ScanAge: {scan_age}"
+            f"ImageDigestLast5: {image_digest} , "
+            f"ImageAge: {image_age} , ScanAge: {scan_age}"
         )
         if scan_age == -1:
             # pylint: disable=no-else-return
@@ -421,7 +421,7 @@ def report(ctx, ecr_client, image, scanReport):
             )
             logger.info("S3 Upload resp: %s", response)
         except ParamValidationError as err:
-            logger.error("Error uploading report: %s", err)
+            logging.error("Error uploading report: %s", err)
 
     for imageScanFinding in scanReport["imageScanFindingsSummary"]:
         images += 1
@@ -457,7 +457,7 @@ def report(ctx, ecr_client, image, scanReport):
                 notsupported += 1
         except Exception as err:
             notsupported += 0
-            logger.debug("ERROR! %s", str(err))
+            logging.debug("ERROR! %s", str(err))
 
     if len(scanReport["imageScanFindingsSummary"]) == 0:
         message = "No image scan finding to report."
