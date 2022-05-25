@@ -20,33 +20,41 @@ Usage: ecr_scan_report [OPTIONS]
   report of findings
 
 Options:
-  -a, --account TEXT       AWS_ACCOUNT_ID(AWS_ACCOUNT_ID) can be passed via
-                           env  [default: *]
+  -a, --account TEXT         AWS_ACCOUNT_ID(AWS_ACCOUNT_ID) can be passed via
+                             env  [default: *]
 
-  -r, --region TEXT        AWS_REGION(AWS_REGION) can be passed via env
-                           [default: us-east-1]
+  -r, --region TEXT          AWS_REGION(AWS_REGION) can be passed via env
+                             [default: us-east-1]
 
-  -n, --reponame TEXT      specifies a repository name .. defaults to '*',
-                           meaning scan all  [default: *]
+  -n, --reponame TEXT        specifies a repository name .. defaults to '*',
+                             meaning scan all  [default: *]
 
-  -o, --snstopicarn TEXT   SNS topic arn to scan summary to.  [default: False]
-  -s, --slacktoken TEXT    Slack token to send summary to the slack cannel.
-                           [default: False]
+  -e, --exclude TEXT         Specify repository/s in order to ignore actions
+                             on them: -e '[repo1,repo2,...]'  [default: ]
 
-  -c, --slackchannel TEXT  Slack token to send summary to the slack channel.
-                           [default: random]
+  -o, --snstopicarn TEXT     SNS topic arn to scan summary to.  [default:
+                             False]
 
-  -b, --bucket TEXT        S3 bucket to place reports in json format to.
-                           [default: False]
+  -s, --slacktoken TEXT      Slack token to send summary to the slack cannel.
+                             [default: False]
 
-  -m, --imageage INTEGER   The age of an image (h) to considered to be too old
-                           for scanning  [default: 48]
+  -c, --slackchannel TEXT    Slack token to send summary to the slack channel.
+                             [default: random]
 
-  -j, --job [scan|report]  The job should be performed possible can be
-                           `report` or `scan`  [default: scan]
+  -b, --bucket TEXT          S3 bucket to place reports in json format to.
+                             [default: False]
 
-  -l, --log_level TEXT     The logging level can be configured via `LOGLEVEL`
-                           variable over env  [default: INFO]
+  -m, --imageage INTEGER     The age of an image (h) to considered to be too
+                             old for scanning  [default: 48]
 
-  -h, --help               Show this message and exit.
+  -j, --job [scan|report]    The job should be performed possible can be
+                             `report` or `scan`  [default: scan]
+
+  -l, --log_level TEXT       The logging level can be configured via
+                             `LOGLEVEL` variable over env  [default: INFO]
+
+  --tags_all / --tag_latest  Perform action on all tags are published within
+                             repository  [default: False]
+
+  -h, --help                 Show this message and exit.                Show this message and exit.
 ```

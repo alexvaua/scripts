@@ -55,7 +55,7 @@ def get_account_id(ctx):
         raise err
 
 
-def get_repos_from_ecr(ecr_client, account_id):
+def get_repos_from_ecr(ecr_client, account_id: str):
     """
     Gets a dict of repos from the ECR
     """
@@ -77,32 +77,43 @@ def get_repos_from_ecr(ecr_client, account_id):
     return repo_s
 
 
-def fun_for_sort(element):
+def fun_for_sort_at(element):
     """
-    Sort function
+    Sort function by PushedAt
     """
-    return element["PushedAt"]
+    return int(element.get("PushedAt", "0"))
 
 
-def get_latest_image(ctx, ecr_images):
+def fun_for_sort_tag(element):
     """
-    Function for Getting latest image
+    Sort function by Tag
+    """
+    return element.get("Tag", 0)
+
+
+def get_sorted_images(ctx, ecr_images):
+    """
+    Function for Getting sorted images
     """
     list_for_sort = []
-    for ecr_image in ecr_images["imageDetails"]:
-        timeimage = ecr_image["imagePushedAt"]
+    for image in ecr_images["imageDetails"]:
+        timeimage = image["imagePushedAt"]
         imageage = ctx["timenow"] - timeimage
         image_pushed_at_days = int(floor(imageage.total_seconds() / 60 / 60))
         digest_list = [
             {
-                "Digest": str(ecr_image["imageDigest"]),
-                "Tag": ecr_image.get(["imageTags"][0]),
+                "Digest": str(image["imageDigest"]),
+                "Tag": image.get(["imageTags"][0]),
                 "PushedAt": image_pushed_at_days,
             }
         ]
         list_for_sort.extend(digest_list)
-        list_for_sort.sort(key=fun_for_sort)
+    if list_for_sort and ctx["tags_all"]:
+        list_for_sort.sort(key=fun_for_sort_tag, reverse=True)
+        logger.debug("List of images: %s", list_for_sort)
+        return list_for_sort
     if list_for_sort:
+        list_for_sort.sort(key=fun_for_sort_at)
         return list_for_sort[0]
     return False
 
@@ -122,16 +133,29 @@ def get_images_from_repo(ctx, ecr_client, repo_obj):
             repo_obj["repositoryName"],
             str(len(ecr_images["imageDetails"])),
         )
-        latest_image = get_latest_image(ctx, ecr_images)
-        if latest_image:
-            ecr_image = ecr_client.describe_images(
+        limages = get_sorted_images(ctx, ecr_images)
+        if limages and ctx["tags_all"]:
+            images = {"imageDetails": []}
+            for image in limages:
+                resp = ecr_client.describe_images(
+                    registryId=ctx["account"],
+                    repositoryName=str(repo_obj["repositoryName"]),
+                    imageIds=[
+                        {"imageDigest": image["Digest"]},
+                    ],
+                )
+                images["imageDetails"].extend(resp["imageDetails"])
+            return images["imageDetails"]
+        if limages:
+            resp = ecr_client.describe_images(
                 registryId=ctx["account"],
                 repositoryName=str(repo_obj["repositoryName"]),
                 imageIds=[
-                    {"imageDigest": latest_image["Digest"]},
+                    {"imageDigest": limages["Digest"]},
                 ],
             )
-            return ecr_image
+            return resp["imageDetails"]
+
     except ParamValidationError as err:
         logger.error(
             "Repo: { %s, %s, }, Error describe images", repo_obj["repositoryName"], err
@@ -197,7 +221,7 @@ def scan_report_it_or_not(ctx, img_obj):
                     return True
             except Exception:
                 if ctx["job"] == "report":
-                    logger.error(
+                    logger.warning(
                         "%s - never scanned, no results available, skip for reporting",
                         message,
                     )
@@ -243,47 +267,51 @@ def image_scan(ecr_client, img_obj):
     """
     image_digest = img_obj["imageDigest"][-5:]
     response = None
-    try:
-        response = ecr_client.start_image_scan(
-            registryId=img_obj["registryId"],
-            repositoryName=str(img_obj["repositoryName"]),
-            imageId={
-                "imageDigest": str(img_obj["imageDigest"]),
-                "imageTag": str(img_obj["imageTags"][0]),
-            },
-        )
-        logger.info(
-            "Repo: %s, ImgDigLast5: %s, Status: %s Scan successfully started..",
-            img_obj["repositoryName"],
-            image_digest,
-            response["imageScanStatus"]["status"],
-        )
-    except ParamValidationError as err:
-        logger.error(
-            "Repo: %s, ImgDigLast5: %s, Error: %s Resp starting scan: %s ",
-            img_obj["repositoryName"],
-            image_digest,
-            str(err),
-            response,
-        )
-        return str(err)
-    while 1:
-        check = ecr_client.describe_images(
-            registryId=img_obj["registryId"],
-            repositoryName=str(img_obj["repositoryName"]),
-            imageIds=[
-                {
-                    "imageDigest": img_obj["imageDigest"],
-                    "imageTag": img_obj["imageTags"][0],
+    if img_obj["imageTags"]:
+        try:
+            response = ecr_client.start_image_scan(
+                registryId=img_obj["registryId"],
+                repositoryName=str(img_obj["repositoryName"]),
+                imageId={
+                    "imageDigest": str(img_obj["imageDigest"]),
+                    "imageTag": str(img_obj["imageTags"][0]),
                 },
-            ],
-        )
-        if str(check["imageDetails"][0]["imageScanStatus"]["status"]) == "IN_PROGRESS":
-            print(".", end="")
-            time.sleep(1)
-        else:
-            print("done")
-            return check
+            )
+            logger.info(
+                "Repo: %s, ImgDigLast5: %s, Status: %s Scan successfully started..",
+                img_obj["repositoryName"],
+                image_digest,
+                response["imageScanStatus"]["status"],
+            )
+        except ParamValidationError as err:
+            logger.error(
+                "Repo: %s, ImgDigLast5: %s, Error: %s Resp starting scan: %s ",
+                img_obj["repositoryName"],
+                image_digest,
+                str(err),
+                response,
+            )
+            return str(err)
+        while 1:
+            check = ecr_client.describe_images(
+                registryId=img_obj["registryId"],
+                repositoryName=str(img_obj["repositoryName"]),
+                imageIds=[
+                    {
+                        "imageDigest": img_obj["imageDigest"],
+                        "imageTag": img_obj["imageTags"][0],
+                    },
+                ],
+            )
+            if (
+                str(check["imageDetails"][0]["imageScanStatus"]["status"])
+                == "IN_PROGRESS"
+            ):
+                print(".", end="")
+                time.sleep(1)
+            else:
+                print("done")
+                return check
     return True
 
 
@@ -392,9 +420,7 @@ def report(ctx, ecr_client, image, scanReport):
     """
     Generate report
     """
-    images = (
-        critical
-    ) = high = medium = informational = low = undefined = notsupported = 0
+    images = critical = high = medium = notsupported = 0
 
     timenowstring = str(ctx["timenow"].strftime("%Y-%m-%d-%H:%M:%S"))
     registryurl = f'https://{str(ctx["account"])}.dkr.ecr.{ctx["region"]}.amazonaws.com'
@@ -438,18 +464,6 @@ def report(ctx, ecr_client, image, scanReport):
         except KeyError:
             medium += 0
         try:
-            informational += int(imageScanFinding["Summary"]["informational"])
-        except KeyError:
-            informational += 0
-        try:
-            low += int(imageScanFinding["Summary"]["low"])
-        except KeyError:
-            low += 0
-        try:
-            undefined += int(imageScanFinding["Summary"]["undefined"])
-        except KeyError:
-            undefined += 0
-        try:
             if (
                 str(imageScanFinding["Summary"]["Exception"])
                 == "Image not supported for scanning"
@@ -485,7 +499,6 @@ def report(ctx, ecr_client, image, scanReport):
             logger.info("Resp to try to publishing to SNS: %s", str(response))
         except ParamValidationError as err:
             logger.error("Publishing to SNS: %s", str(err))
-
     return scanReport
 
 
@@ -504,58 +517,47 @@ def scan_or_report(ctx, repos, ecr_client):
             "imageScanFindingsSummary": [],
         }
         for repo in repos["repositories"]:
-            if (
-                ctx["reponame"] != "*"
-                and str(repo["repositoryName"]) == ctx["reponame"]
-            ):
-                images = get_images_from_repo(ctx, ecr_client, repo)
-                image_count += len(images["imageDetails"])
-                repo_count = 1
-                for image in images["imageDetails"]:
-                    scan_decision = scan_report_it_or_not(ctx, image)
-                    if scan_decision:
-                        if ctx["job"] == "scan":
-                            scanResult = image_scan(ecr_client, image)
-                            try:
-                                if scanResult["imageDetails"][0]["imageScanStatus"][
-                                    "description"
-                                ]:
-                                    scan_count += 1
-                            except KeyError:
-                                continue
-                        if ctx["job"] == "report":
-                            scanReport = report(ctx, ecr_client, image, scanReport)
-                            continue
-            if ctx["reponame"] == "*":
+            if not str(repo["repositoryName"]) in ctx["exclude"]:
                 images = get_images_from_repo(ctx, ecr_client, repo)
                 if images:
-                    image_count += len(images["imageDetails"])
+                    image_count += len(images)
                 else:
                     continue
                 repo_count += 1
-                for image in images["imageDetails"]:
-                    scan_decision = scan_report_it_or_not(ctx, image)
-                    if scan_decision and ctx["job"] == "scan":
-                        scanResult = image_scan(ecr_client, image)
-                        try:
-                            if scanResult["imageDetails"][0]["imageScanStatus"][
-                                "description"
-                            ]:
-                                scan_count += 1
-                        except KeyError:
-                            continue
-                    if scan_decision and ctx["job"] == "report":
-                        scanReport = report(ctx, ecr_client, image, scanReport)
-                        continue
-        if ctx["job"] == "report":
-            with open(ctx["tmp_file"], "w", encoding="utf-8") as f:
-                json.dump(scanReport, f, ensure_ascii=False, indent=4)
-            logger.info(
-                "The scan report has been stored in to: %s", str(ctx["tmp_file"])
-            )
+                for image in images:
+                    scan_report_decision = scan_report_it_or_not(ctx, image)
+                    if scan_report_decision:
+                        if str(repo["repositoryName"]) == ctx["reponame"]:
+                            if ctx["job"] == "scan":
+                                scanResult = image_scan(ecr_client, image)
+                                try:
+                                    if scanResult["imageDetails"][0]["imageScanStatus"][
+                                        "description"
+                                    ]:
+                                        scan_count += 1
+                                except KeyError:
+                                    continue
+                            if ctx["job"] == "report":
+                                report_result = report(
+                                    ctx, ecr_client, image, scanReport
+                                )
+                                scanReport.update(report_result)
 
+                        if ctx["reponame"] == "*":
+                            if ctx["job"] == "scan":
+                                scanResult = image_scan(ecr_client, image)
+                                try:
+                                    if scanResult["imageDetails"][0]["imageScanStatus"][
+                                        "description"
+                                    ]:
+                                        scan_count += 1
+                                except KeyError:
+                                    continue
+                            if ctx["job"] == "report":
+                                scanReport = report(ctx, ecr_client, image, scanReport)
+                                continue
         logger.info(
-            "Finished %s: %s, images: %s, repo: %s scans in total..",
+            "Finished %s: %s, images: %s, repo: %s, scans in total..",
             ctx["job"],
             scan_count,
             image_count,
@@ -570,13 +572,12 @@ def report_to_slack(ctx, findings_summary):
     """
     Prepare and publish message to the slack channel
     """
+
     slack_client = WebClient(token=ctx["slacktoken"])
     message = ""
     for item in findings_summary:
-        message += (
-            f'<{item["Report"]}|{item["ImageUri"]}>\n'
-            f'```{json.dumps(item["Summary"])}```\n'
-        )
+        message += f'<{item["Report"]}|{item["Repository"]}:{item["Tag"]}> \
+`{json.dumps(item["Summary"])}`\n'
     logger.debug("Message: %s", message)
 
     try:
@@ -596,7 +597,7 @@ def report_to_slack(ctx, findings_summary):
 # pylint: disable=too-many-arguments
 @click.command(
     context_settings=dict(
-        ignore_unknown_options=True,
+        ignore_unknown_options=True, help_option_names=["-h", "--help"]
     )
 )
 @click.option(
@@ -621,6 +622,13 @@ def report_to_slack(ctx, findings_summary):
     show_default=True,
     help="specifies a repository name .. defaults to '*', meaning scan all",
     default="*",
+)
+@click.option(
+    "-e",
+    "--exclude",
+    show_default=True,
+    help="Specify repository/s in order to ignore actions on them: -e '[repo1,repo2,...]'",
+    default=[],
 )
 @click.option(
     "-o",
@@ -676,17 +684,25 @@ def report_to_slack(ctx, findings_summary):
     show_default=True,
     help="The logging level can be configured via `LOGLEVEL` variable over env",
 )
+@click.option(
+    "--tags_all/--tag_latest",
+    default=False,
+    show_default=True,
+    help="Perform action on all tags are published within repository",
+)
 @click.help_option("-h", "--help")
 def main(
     account: str,
     region: str,
     reponame: str,
+    exclude: list,
     snstopicarn: str,
     slacktoken: str,
     slackchannel: str,
     imageage: int,
     job: str,
     log_level: str,
+    tags_all: bool,
     bucket: str,
 ):
     """
@@ -697,12 +713,14 @@ def main(
     ctx["account"] = account
     ctx["region"] = region
     ctx["reponame"] = reponame
+    ctx["exclude"] = exclude
     ctx["snstopicarn"] = snstopicarn
     ctx["slacktoken"] = slacktoken
     ctx["slackchannel"] = slackchannel
     ctx["imageage"] = imageage
     ctx["job"] = job
     ctx["log_level"] = log_level
+    ctx["tags_all"] = tags_all
     ctx["bucket"] = bucket
     ctx["timenow"] = datetime.now(timezone.utc)
 
@@ -718,6 +736,10 @@ def main(
             ctx["account"] = account_id
     repos = get_repos_from_ecr(ecr_client, ctx["account"])
     scan_summary = scan_or_report(ctx, repos, ecr_client)
+    if ctx["job"] == "report" and scan_summary:
+        with open(ctx["tmp_file"], "w", encoding="utf-8") as f:
+            json.dump(scan_summary, f, ensure_ascii=False, indent=4)
+        logger.info("The scan report has been stored in to: %s", str(ctx["tmp_file"]))
     if slacktoken and scan_summary:
         responce = report_to_slack(ctx, scan_summary)
         if responce:
