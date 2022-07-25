@@ -4,7 +4,7 @@ set -euo pipefail
 STATUS=good
 APP="check_icmp dst hosts"
 HOST=$(cat /etc/hostname).mixua.net
-TARGETS="AntonHomeSW HomeStolbSW GaponStolbRT MaslukStolbRT TulnovaHomeRT"
+TARGETS=${TARGETS:="AntonHomeSW HomeStolbSW GaponStolbRT MaslukStolbRT TulnovaHomeRT KievNetGW"}
 
 function push_slack() {
         if [[ -n "$results" ]] && [[ ! -f tmp.txt ]] ; then
