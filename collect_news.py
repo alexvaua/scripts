@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL of the website
-url = "https://ukr.net/"
+url = "https://meta.ua/"
 
 # Make a GET request to fetch the raw HTML content
 html_content = requests.get(url).text
