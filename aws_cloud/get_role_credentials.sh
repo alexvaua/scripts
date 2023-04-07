@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-PROFILE_NAME=${PROFILE_NAME:-"user.name"}
-JUMP_ACCOUNT_ID=${JUMP_ACCOUNT_ID:-"123456789012"}
+PROFILE_NAME=${PROFILE_NAME:-$(aws sts get-caller-identity --query Arn --output text|cut -d ":" -f6| cut -d "/" -f2)}
+JUMP_ACCOUNT_ID=${JUMP_ACCOUNT_ID:-$(aws sts get-caller-identity --query Account --output text)}
 [[ -z ${ASSUME_ROLE} ]] && echo "Please provide the ASSUME_ROLE=[ARN] of the role to assume tmp credentials from!" && exit 1
 
 role_pass=$(aws sts assume-role --role-arn "${ASSUME_ROLE}" --role-session-name "${PROFILE_NAME}" --output json \
