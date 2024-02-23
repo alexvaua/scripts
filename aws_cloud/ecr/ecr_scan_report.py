@@ -4,19 +4,21 @@
 The script to scan and reporting docker vulnerabilities stored in ECR.
 """
 
+import datetime
+
 # pylint: disable=broad-except,invalid-name,too-many-branches
 import json
-import sys
-import time
-import datetime
-import tempfile
 import logging
-from math import floor
+import sys
+import tempfile
+import time
 from datetime import datetime, timezone
-import click
+from math import floor
+
 import boto3
-from botocore.exceptions import ParamValidationError
+import click
 from botocore.config import Config
+from botocore.exceptions import ParamValidationError
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
@@ -191,72 +193,59 @@ def get_scan_age(ctx, img_obj):
     return -1
 
 
-# pylint: disable=too-many-return-statements
 def scan_report_it_or_not(ctx, img_obj):
     """
-    A logic to determine if an image provided as img_obj shall be scanned or not given
-    the parameter(or defaults) from outside
+    Determine if an image provided as img_obj shall be scanned or reported based on the context.
     """
     image_age = get_image_age(ctx, img_obj)
     scan_age = get_scan_age(ctx, img_obj)
     image_digest = img_obj["imageDigest"][-5:]
+    message = (
+        f"ImageDigestLast5: {image_digest}, ImageAge: {image_age}, ScanAge: {scan_age}"
+    )
+
     try:
-        message = (
-            f"ImageDigestLast5: {image_digest} , "
-            f"ImageAge: {image_age} , ScanAge: {scan_age}"
-        )
         if scan_age == -1:
-            # pylint: disable=no-else-return
-            try:
-                if str(img_obj["imageScanStatus"]["status"]) == "FAILED":
-                    logger.info(
-                        "%s - Image not supported for scanning, skip for scan and report.",
-                        message,
-                    )
-                    return False
-                else:
-                    logger.info(
-                        "%s - never scanned, scan it, check for reporting.", message
-                    )
-                    return True
-            except Exception:
-                if ctx["job"] == "report":
-                    logger.warning(
-                        "%s - never scanned, no results available, skip for reporting",
-                        message,
-                    )
-                    return False
-                if ctx["job"] == "scan":
-                    logger.warning("%s - never scanned, schedule scan..", message)
-                    return True
-        if scan_age > ctx["imageage"]:
-            if ctx["job"] == "report":
+            if (
+                "imageScanStatus" in img_obj
+                and img_obj["imageScanStatus"]["status"] == "FAILED"
+            ):
                 logger.info(
-                    "%s - scan older than specified min age, check for reporting.",
+                    "%s - Image not supported for scanning, skip for scan and report.",
                     message,
                 )
-                return True
-            if ctx["job"] == "scan":
-                logger.info("%s - Scan age too old, schedule scan..", message)
-                return True
-        if scan_age <= ctx["imageage"]:
-            if ctx["job"] == "report":
-                logger.info(
-                    "%s - scan newer than specified min age, check for reporting.",
-                    message,
-                )
-                return True
-            if ctx["job"] == "scan":
-                logger.info("%s - Scan age too fresh, skip scan.", message)
                 return False
+            logger.info("%s - never scanned, scan it, check for reporting.", message)
+            return True
+
+        if scan_age > ctx["imageage"]:
+            log_message = (
+                "scan older than specified min age, check for reporting."
+                if ctx["job"] == "report"
+                else "Scan age too old, schedule scan.."
+            )
+            logger.info("%s - %s", message, log_message)
+            return True
+
+        if scan_age <= ctx["imageage"]:
+            log_message = (
+                "scan newer than specified min age, check for reporting."
+                if ctx["job"] == "report"
+                else "Scan age too fresh, skip scan."
+            )
+            logger.info("%s - %s", message, log_message)
+            return ctx["job"] == "report"
+
         if image_age > ctx["imageage"]:
             logger.info("%s - don't process, image too old.", message)
             return False
+
     except KeyError as err:
         logger.error("%s, Err: %s - skip in general.", message, str(err))
         return False
+
     logger.info(
-        "%s - no idea why this felt through the mesh, pls check the code..", message
+        "%s - no idea why this fell through the mesh, please check the code..", message
     )
     return False
 
