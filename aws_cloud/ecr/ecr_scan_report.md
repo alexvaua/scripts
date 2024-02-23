@@ -1,4 +1,4 @@
-# The script to scan and reporting docker vulnerabilities stored in ECR.
+# The script to scan and reporting docker vulnerabilities stored in ECR
 
 This script is designed to preform scanning and generate reports on vulnerabilities
 are that found in the docker images stored in ECR repositories in a particular account
