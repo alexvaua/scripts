@@ -26,10 +26,10 @@
 
 - **AWS WAF and AWS Shield**: Use AWS WAF (Web Application Firewall) to protect your web applications from common web exploits. AWS Shield provides managed DDoS protection, configure a public access for the only expected sub net ranges or countries.
 
-1.  Consider to enable WAF SQL database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.  Learn More
+  1. Consider to enable WAF SQL database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.  Learn More
 
 ### 6. Regular Audits and Continuous Improvement
 
 - **Stay Informed**: Keep up with AWS security announcements and best practices. Regularly update and patch services and applications deployed on AWS.
 
-Implementing these practices will significantly improve the security of AWS account and the resources deployed in it. Security is an ongoing process, requiring regular reviews and updates to practices we use as new threats emerge and AWS introduces new features and services.
+Implementing these practices will significantly improve the security of AWS account and the resources deployed in it. Security is an ongoing process, requiring regular reviews and updates to practices we use as new threats emerge and AWS introduces new features and services as well as performing security tests.
