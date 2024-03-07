@@ -20,23 +20,16 @@
 ### 4. Network Security
 
 - **VPC Security**: Utilize Virtual Private Cloud (VPC) to isolate your AWS resources. Implement security groups and network access control lists (NACLs) to control inbound and outbound traffic, prevent using the default VPC.
-- **Subnet Design**: Design subnets for different layers (e.g., public, private, and database layers) to enhance security.
 - **Bastion Hosts**: Use ssm instead of bastion hosts for secure SSH access to instances in private subnets.
 
 ### 5. Utilize AWS Security Services
 
 - **AWS WAF and AWS Shield**: Use AWS WAF (Web Application Firewall) to protect your web applications from common web exploits. AWS Shield provides managed DDoS protection, configure a public access for the only expected sub net ranges or countries.
 
- 1. Consider to enable WAF SQL database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.  Learn More
+1.  Consider to enable WAF SQL database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.  Learn More
 
-### 6. Compliance and Best Practices
+### 6. Regular Audits and Continuous Improvement
 
-- **AWS Well-Architected Framework**: Follow the security best practices recommended in the AWS Well-Architected Framework.
-- **Compliance**: Ensure your AWS environment complies with necessary regulatory standards (e.g., GDPR, HIPAA) by utilizing AWS compliance resources and services.
-
-### 7. Regular Audits and Continuous Improvement
-
-- **Conduct Security Audits**: Regularly audit your AWS environment with tools like AWS Trusted Advisor and AWS Security Hub to identify and mitigate potential security issues.
 - **Stay Informed**: Keep up with AWS security announcements and best practices. Regularly update and patch services and applications deployed on AWS.
 
-Implementing these practices will significantly improve the security of your AWS account and the resources deployed in it. Security is an ongoing process, requiring regular reviews and updates to practices we use as new threats emerge and AWS introduces new features and services.
+Implementing these practices will significantly improve the security of AWS account and the resources deployed in it. Security is an ongoing process, requiring regular reviews and updates to practices we use as new threats emerge and AWS introduces new features and services.
