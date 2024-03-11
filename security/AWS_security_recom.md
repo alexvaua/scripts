@@ -21,7 +21,6 @@
 ### 4. Network Security
 
 - **VPC Security**: Utilize Virtual Private Cloud (VPC) to isolate your AWS resources. Implement security groups and network access control lists (NACLs) to control inbound and outbound traffic, prevent using the default VPC.
-- **Bastion Hosts**: Use ssm instead of bastion hosts for secure SSH access to instances in private subnets.
 
 ### 5. Utilize AWS Security Services
 
