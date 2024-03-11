@@ -8,10 +8,11 @@
 - **Multi-Factor Authentication (MFA)**: Enable MFA for all users, especially for the root account and privileged IAM users, make sure that users can manage their MFA devices, and have no permissions until the MFA been set.
 - **Least Privilege Principle**: Grant the least privileges necessary for users and services to perform their tasks. Regularly review and prune unnecessary permissions.
 - **Follow best paractices**: Apply password policy <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>
+- **Useing IAM Access Analyser**: Consider useing the AWS access analyser in order to review resources for external access and IAM users and roles for unused access, review results and plan actions <https://us-east-1.console.aws.amazon.com/access-analyzer/home?region=us-east-1>
 
 ### 2. Monitor and Audit with AWS CloudTrail and Amazon CloudWatch
 
-- **Use CloudWatch**: Utilize Amazon CloudWatch to monitor and alert on suspicious activities. Set up alarms for unusual API activity or unauthorized resource modifications.
+- **Use CloudWatch**: Utilize Amazon CloudWatch to monitor and alert on suspicious activities. Set up alarms for unusual API activity or unauthorized resource modifications, forward important messages to a proper channel.
 
 ### 3. Secure Your Data
 
