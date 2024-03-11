@@ -24,11 +24,11 @@ This document outlines security improvements to harden resources, services, and 
 
 - **VPC Security**: Utilize security groups and network access control lists (NACLs) for traffic control. Avoid using the default VPC for enhanced security.
 
-### 5. Utilize AWS Security Services
+### 5. Extend AWS Security Services
 
 - **AWS WAF and AWS Shield**:
 
-  - Implement AWS WAF to protect against common web exploits, such as SQL injection attacks, by enabling specific rules designed to block malicious requests [Learn More](https://aws.amazon.com/waf/).
+  - Consider to enable `WAF SQL` database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries. Learn More.
 
 ### 6. Penetration Testing & Vulnerability Scanning
 
