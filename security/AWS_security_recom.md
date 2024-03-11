@@ -1,35 +1,43 @@
-# Security review
+# Security Review
 
-## The Suggestion list of security improvements that will help to harden resources, services and managed data according to best practices
+## Suggested List of Security Improvements
+
+This document outlines security improvements to harden resources, services, and managed data according to best practices.
 
 ### 1. Use AWS Identity and Access Management (IAM)
 
-- **Multi-Factor Authentication (MFA)**: Enable MFA for all users, make sure that users can manage their MFA devices, and have no permissions until the MFA been set.
-- **Least Privilege Principle**: Grant the least privileges necessary for users and services to perform their tasks. Regularly review and prune unnecessary permissions.
-- **Follow best paractices**: Apply password policy <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>
-- **Useing IAM Access Analyser**: Consider useing the AWS access analyser in order to review resources for external access and IAM users and roles for unused access, review results and plan actions <https://us-east-1.console.aws.amazon.com/access-analyzer/home?region=us-east-1>
+- **Multi-Factor Authentication (MFA)**: Enable MFA for all users. Ensure users have no permissions until MFA is configured.
+- **Least Privilege Principle**: Adhere to the least privilege principle by granting users and services only the permissions necessary to perform their duties. Regularly review and remove unnecessary permissions.
+- **Best Practices**: Implement a strong password policy as recommended by AWS IAM best practices [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html).
+- **IAM Access Analyzer**: Utilize the IAM Access Analyzer to assess resources for external access and review IAM users and roles for unused permissions. Plan remedial actions based on the review [AWS Access Analyzer](https://us-east-1.console.aws.amazon.com/access-analyzer/home?region=us-east-1).
 
 ### 2. Monitor and Audit with AWS CloudTrail and Amazon CloudWatch
 
-- **Use CloudWatch**: Utilize Amazon CloudWatch to monitor and alert on suspicious activities. Set up alarms for unusual API activity or unauthorized resource modifications, forward important messages to a proper channel.
+- **CloudWatch Usage**: Deploy Amazon CloudWatch to monitor and alert on suspicious activities. Configure alarms for unusual API activity or unauthorized modifications, and forward critical alerts to the appropriate channels.
 
 ### 3. Secure Your Data
 
-- **Encryption**: Use AWS Key Management Service (KMS) to manage and rotate encryption keys. Encrypt data at rest and in transit across all services (e.g., S3, EBS, RDS).
-- **Data Backup**: Regularly back up your data using AWS Backup or other mechanisms to protect against accidental or malicious deletion.
+- **Encryption**: Leverage AWS Key Management Service (KMS) for encryption key management and rotation. Ensure encryption of data at rest and in transit across all services (e.g., S3, EBS, RDS).
+- **Data Backup**: Employ regular data backup strategies using AWS Backup or similar services to safeguard against data loss.
 
 ### 4. Network Security
 
-- **VPC Security**: Utilize Virtual Private Cloud (VPC) to isolate your AWS resources. Implement security groups and network access control lists (NACLs) to control inbound and outbound traffic, prevent using the default VPC.
+- **VPC Security**: Utilize security groups and network access control lists (NACLs) for traffic control. Avoid using the default VPC for enhanced security.
 
 ### 5. Utilize AWS Security Services
 
-- **AWS WAF and AWS Shield**: Use AWS WAF (Web Application Firewall) to protect your web applications from common web exploits. AWS Shield provides managed DDoS protection, configure a public access for the only expected sub net ranges or countries.
+- **AWS WAF and AWS Shield**:
 
-  1. Consider to enable WAF SQL database That contains rules that allow you to block request patterns associated with exploitation of SQL databases, like SQL injection attacks. This can help prevent remote injection of unauthorized queries.  Learn More
+  - Implement AWS WAF to protect against common web exploits, such as SQL injection attacks, by enabling specific rules designed to block malicious requests [Learn More](https://aws.amazon.com/waf/).
 
-### 6. Regular Audits and Continuous Improvement
+### 6. Penetration Testing & Vulnerability Scanning
 
-- **Stay Informed**: Keep up with AWS security announcements and best practices. Regularly update and patch services and applications deployed on AWS.
+- **Vulnerability Scans**: Conduct internal vulnerability scans within your VPC using tools like OpenVAS [OpenVAS](https://www.openvas.org) on a regular basis to identify and mitigate potential vulnerabilities.
 
-Implementing these practices will significantly improve the security of AWS account and the resources deployed in it. Security is an ongoing process, requiring regular reviews and updates to practices we use as new threats emerge and AWS introduces new features and services as well as performing security tests.
+- **Penetration Tests**: Engage in penetration testing through bug bounty programs such as HackerOne's Bug Bounty Platform [HackerOne](https://www.hackerone.com/product/bug-bounty-platform), to uncover and rectify security vulnerabilities before they can be exploited.
+
+### 7. Regular Audits and Continuous Improvement
+
+- **Stay Informed**: Keep abreast of AWS security announcements and best practices. Continuously update and patch services and applications deployed on AWS.
+
+Implementing these practices will significantly enhance the security posture of your AWS account and its resources. Remember, security is an ongoing process that requires continuous attention and adaptation to new threats and AWS updates.
