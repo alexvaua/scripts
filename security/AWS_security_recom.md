@@ -4,8 +4,7 @@
 
 ### 1. Use AWS Identity and Access Management (IAM)
 
-- **Root Account Protection**: Minimize the use of the root account. Create individual IAM users for people accessing your account.
-- **Multi-Factor Authentication (MFA)**: Enable MFA for all users, especially for the root account and privileged IAM users, make sure that users can manage their MFA devices, and have no permissions until the MFA been set.
+- **Multi-Factor Authentication (MFA)**: Enable MFA for all users, make sure that users can manage their MFA devices, and have no permissions until the MFA been set.
 - **Least Privilege Principle**: Grant the least privileges necessary for users and services to perform their tasks. Regularly review and prune unnecessary permissions.
 - **Follow best paractices**: Apply password policy <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>
 - **Useing IAM Access Analyser**: Consider useing the AWS access analyser in order to review resources for external access and IAM users and roles for unused access, review results and plan actions <https://us-east-1.console.aws.amazon.com/access-analyzer/home?region=us-east-1>
