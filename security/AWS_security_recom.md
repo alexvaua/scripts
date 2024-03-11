@@ -7,6 +7,7 @@
 - **Root Account Protection**: Minimize the use of the root account. Create individual IAM users for people accessing your account.
 - **Multi-Factor Authentication (MFA)**: Enable MFA for all users, especially for the root account and privileged IAM users, make sure that users can manage their MFA devices, and have no permissions until the MFA been set.
 - **Least Privilege Principle**: Grant the least privileges necessary for users and services to perform their tasks. Regularly review and prune unnecessary permissions.
+- **Follow best paractices**: Apply password policy <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>
 
 ### 2. Monitor and Audit with AWS CloudTrail and Amazon CloudWatch
 
