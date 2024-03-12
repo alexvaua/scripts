@@ -2,110 +2,110 @@
 
 | Config Rule Name                                                          | Compliance Type | Valuable |
 | ------------------------------------------------------------------------- | --------------- | -------- |
-| access-keys-rotated-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [ ]    |
-| acm-certificate-expiration-check-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [ ]    |
-| alb-waf-enabled-conformance-pack-n15lovpyh                                | NON_COMPLIANT   | - [ ]    |
-| api-gw-associated-with-waf-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [ ]    |
-| api-gw-cache-enabled-and-encrypted-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [ ]    |
-| api-gw-execution-logging-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [ ]    |
-| cloudwatch-alarm-action-check-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [ ]    |
-| cmk-backing-key-rotation-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [ ]    |
-| cw-loggroup-retention-period-check-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [ ]    |
-| ebs-in-backup-plan-conformance-pack-n15lovpyh                             | NON_COMPLIANT   | - [ ]    |
-| ec2-ebs-encryption-by-default-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [ ]    |
-| ec2-instance-detailed-monitoring-enabled-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [ ]    |
-| ec2-instance-managed-by-systems-manager-conformance-pack-n15lovpyh        | NON_COMPLIANT   | - [ ]    |
-| ec2-instance-profile-attached-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [ ]    |
-| ec2-resources-protected-by-backup-plan-conformance-pack-n15lovpyh         | NON_COMPLIANT   | - [ ]    |
-| elb-deletion-protection-enabled-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [ ]    |
-| elb-logging-enabled-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [ ]    |
-| encrypted-volumes-conformance-pack-n15lovpyh                              | NON_COMPLIANT   | - [ ]    |
-| iam-customer-policy-blocked-kms-actions-conformance-pack-n15lovpyh        | NON_COMPLIANT   | - [ ]    |
-| iam-no-inline-policy-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [ ]    |
-| iam-password-policy-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [ ]    |
-| iam-policy-no-statements-with-admin-access-conformance-pack-n15lovpyh     | NON_COMPLIANT   | - [ ]    |
-| iam-policy-no-statements-with-full-access-conformance-pack-n15lovpyh      | NON_COMPLIANT   | - [ ]    |
-| iam-user-group-membership-check-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [ ]    |
-| iam-user-mfa-enabled-conformance-pack-n15lovpyh                           | NON_COMPLIANT   | - [ ]    |
-| iam-user-no-policies-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [ ]    |
-| iam-user-unused-credentials-check-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [ ]    |
-| lambda-concurrency-check-conformance-pack-n15lovpyh                       | NON_COMPLIANT   | - [ ]    |
-| lambda-dlq-check-conformance-pack-n15lovpyh                               | NON_COMPLIANT   | - [ ]    |
-| lambda-inside-vpc-conformance-pack-n15lovpyh                              | NON_COMPLIANT   | - [ ]    |
-| mfa-enabled-for-iam-console-access-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [ ]    |
-| no-unrestricted-route-to-igw-conformance-pack-n15lovpyh                   | NON_COMPLIANT   | - [ ]    |
-| rds-enhanced-monitoring-enabled-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [ ]    |
-| rds-in-backup-plan-conformance-pack-n15lovpyh                             | NON_COMPLIANT   | - [ ]    |
-| rds-instance-deletion-protection-enabled-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [ ]    |
-| rds-logging-enabled-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [ ]    |
-| rds-multi-az-support-conformance-pack-n15lovpyh                           | NON_COMPLIANT   | - [ ]    |
-| rds-snapshot-encrypted-conformance-pack-n15lovpyh                         | NON_COMPLIANT   | - [ ]    |
-| root-account-hardware-mfa-enabled-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [ ]    |
-| s3-account-level-public-access-blocks-periodic-conformance-pack-n15lovpyh | NON_COMPLIANT   | - [ ]    |
-| s3-bucket-level-public-access-prohibited-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [ ]    |
-| s3-bucket-logging-enabled-conformance-pack-n15lovpyh                      | NON_COMPLIANT   | - [ ]    |
-| s3-bucket-replication-enabled-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [ ]    |
-| s3-bucket-ssl-requests-only-conformance-pack-n15lovpyh                    | NON_COMPLIANT   | - [ ]    |
-| s3-bucket-versioning-enabled-conformance-pack-n15lovpyh                   | NON_COMPLIANT   | - [ ]    |
-| s3-default-encryption-kms-conformance-pack-n15lovpyh                      | NON_COMPLIANT   | - [ ]    |
-| securityhub-access-keys-rotated-ba30c708                                  | NON_COMPLIANT   | - [ ]    |
-| securityhub-acm-certificate-expiration-check-cb047461                     | NON_COMPLIANT   | - [ ]    |
-| securityhub-alb-http-drop-invalid-header-enabled-0aaa842d                 | NON_COMPLIANT   | - [ ]    |
-| securityhub-api-gw-associated-with-waf-a6c540a4                           | NON_COMPLIANT   | - [ ]    |
-| securityhub-api-gw-execution-logging-enabled-acf1a897                     | NON_COMPLIANT   | - [ ]    |
-| securityhub-api-gw-xray-enabled-89e65213                                  | NON_COMPLIANT   | - [ ]    |
-| securityhub-athena-workgroup-encrypted-at-rest-30e47b23                   | NON_COMPLIANT   | - [ ]    |
-| securityhub-cloudformation-stack-notification-check-43fbe20b              | NON_COMPLIANT   | - [ ]    |
-| securityhub-cloudfront-accesslogs-enabled-350e83ed                        | NON_COMPLIANT   | - [ ]    |
-| securityhub-cloudfront-associated-with-waf-0345b27b                       | NON_COMPLIANT   | - [ ]    |
-| securityhub-cloudfront-origin-failover-enabled-5ab31b54                   | NON_COMPLIANT   | - [ ]    |
-| securityhub-cmk-backing-key-rotation-enabled-c18bdca1                     | NON_COMPLIANT   | - [ ]    |
-| securityhub-ec2-ebs-encryption-by-default-ebd2a50e                        | NON_COMPLIANT   | - [ ]    |
-| securityhub-ec2-imdsv2-check-4ba2c31b                                     | NON_COMPLIANT   | - [ ]    |
-| securityhub-ec2-instance-managed-by-ssm-e79e9044                          | NON_COMPLIANT   | - [ ]    |
-| securityhub-ecr-private-lifecycle-policy-configured-09745afe              | NON_COMPLIANT   | - [ ]    |
-| securityhub-ecr-private-tag-immutability-enabled-f24bf959                 | NON_COMPLIANT   | - [ ]    |
-| securityhub-ecs-containers-readonly-access-da5d8660                       | NON_COMPLIANT   | - [ ]    |
-| securityhub-elb-deletion-protection-enabled-d776b62b                      | NON_COMPLIANT   | - [ ]    |
-| securityhub-elb-logging-enabled-13b7e1c2                                  | NON_COMPLIANT   | - [ ]    |
-| securityhub-encrypted-volumes-4e4c2b51                                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-password-policy-minimum-length-check-44ba08a7             | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-password-policy-prevent-reuse-check-056d336e              | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-password-policy-recommended-defaults-566175fc             | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-policy-no-statements-with-full-access-11d41704            | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-support-policy-in-use-be710f94                            | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-user-no-policies-check-582bd8c3                           | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-user-unused-credentials-check-45-c9efe739                 | NON_COMPLIANT   | - [ ]    |
-| securityhub-iam-user-unused-credentials-check-9b661a22                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-lambda-function-settings-check-b0a56c69                       | NON_COMPLIANT   | - [ ]    |
-| securityhub-macie-status-check-eb51e4c1                                   | NON_COMPLIANT   | - [ ]    |
-| securityhub-mfa-enabled-for-iam-console-access-aa55b2c4                   | NON_COMPLIANT   | - [ ]    |
-| securityhub-nacl-no-unrestricted-ssh-rdp-42e3f5ac                         | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-enhanced-monitoring-enabled-0be33cae                      | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-instance-deletion-protection-enabled-db93acf1             | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-instance-iam-authentication-enabled-c3da8d4a              | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-logging-enabled-cd9716f3                                  | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-multi-az-support-f7318c29                                 | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-no-default-ports-ba3614ac                                 | NON_COMPLIANT   | - [ ]    |
-| securityhub-rds-snapshot-encrypted-24e515bb                               | NON_COMPLIANT   | - [ ]    |
-| securityhub-root-account-hardware-mfa-enabled-d2163a76                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-route53-query-logging-enabled-ca127d18                        | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-account-level-public-access-blocks-periodic-7ec66be3       | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-bucket-level-public-access-prohibited-c57ed59b             | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-bucket-logging-enabled-3cdf8dde                            | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-bucket-mfa-delete-enabled-6c08672e                         | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-bucket-ssl-requests-only-f279ff1c                          | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-event-notifications-enabled-07a0d9ce                       | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-lifecycle-policy-check-0c20ff2f                            | NON_COMPLIANT   | - [ ]    |
-| securityhub-s3-version-lifecycle-policy-check-3d8b2996                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-security-account-information-provided-310d85ec                | NON_COMPLIANT   | - [ ]    |
-| securityhub-service-vpc-endpoint-enabled-42382f90                         | NON_COMPLIANT   | - [ ]    |
-| securityhub-sns-encrypted-kms-1e9c7e32                                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-sns-topic-message-delivery-notification-enabled-39c06e52      | NON_COMPLIANT   | - [ ]    |
-| securityhub-subnet-auto-assign-public-ip-disabled-c41f11d9                | NON_COMPLIANT   | - [ ]    |
-| securityhub-vpc-default-security-group-closed-71e26362                    | NON_COMPLIANT   | - [ ]    |
-| securityhub-vpc-flow-logs-enabled-63f23ae0                                | NON_COMPLIANT   | - [ ]    |
-| subnet-auto-assign-public-ip-disabled-conformance-pack-n15lovpyh          | NON_COMPLIANT   | - [ ]    |
-| vpc-default-security-group-closed-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [ ]    |
-| vpc-flow-logs-enabled-conformance-pack-n15lovpyh                          | NON_COMPLIANT   | - [ ]    |
-| vpc-sg-open-only-to-authorized-ports-conformance-pack-n15lovpyh           | NON_COMPLIANT   | - [ ]    |
+| access-keys-rotated-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
+| acm-certificate-expiration-check-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
+| alb-waf-enabled-conformance-pack-n15lovpyh                                | NON_COMPLIANT   | - [x]    |
+| api-gw-associated-with-waf-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [x]    |
+| api-gw-cache-enabled-and-encrypted-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [x]    |
+| api-gw-execution-logging-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
+| cloudwatch-alarm-action-check-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [x]    |
+| cmk-backing-key-rotation-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
+| cw-loggroup-retention-period-check-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [x]    |
+| ebs-in-backup-plan-conformance-pack-n15lovpyh                             | NON_COMPLIANT   | - [-]    |
+| ec2-ebs-encryption-by-default-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [-]    |
+| ec2-instance-detailed-monitoring-enabled-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [-]    |
+| ec2-instance-managed-by-systems-manager-conformance-pack-n15lovpyh        | NON_COMPLIANT   | - [-]    |
+| ec2-instance-profile-attached-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [-]    |
+| ec2-resources-protected-by-backup-plan-conformance-pack-n15lovpyh         | NON_COMPLIANT   | - [-]    |
+| elb-deletion-protection-enabled-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [x]    |
+| elb-logging-enabled-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
+| encrypted-volumes-conformance-pack-n15lovpyh                              | NON_COMPLIANT   | - [-]    |
+| iam-customer-policy-blocked-kms-actions-conformance-pack-n15lovpyh        | NON_COMPLIANT   | - [-]    |
+| iam-no-inline-policy-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [x]    |
+| iam-password-policy-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
+| iam-policy-no-statements-with-admin-access-conformance-pack-n15lovpyh     | NON_COMPLIANT   | - [x]    |
+| iam-policy-no-statements-with-full-access-conformance-pack-n15lovpyh      | NON_COMPLIANT   | - [x]    |
+| iam-user-group-membership-check-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [x]    |
+| iam-user-mfa-enabled-conformance-pack-n15lovpyh                           | NON_COMPLIANT   | - [x]    |
+| iam-user-no-policies-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [-]    |
+| iam-user-unused-credentials-check-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [x]    |
+| lambda-concurrency-check-conformance-pack-n15lovpyh                       | NON_COMPLIANT   | - [x]    |
+| lambda-dlq-check-conformance-pack-n15lovpyh                               | NON_COMPLIANT   | - [x]    |
+| lambda-inside-vpc-conformance-pack-n15lovpyh                              | NON_COMPLIANT   | - [x]    |
+| mfa-enabled-for-iam-console-access-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [x]    |
+| no-unrestricted-route-to-igw-conformance-pack-n15lovpyh                   | NON_COMPLIANT   | - [-]    |
+| rds-enhanced-monitoring-enabled-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [x]    |
+| rds-in-backup-plan-conformance-pack-n15lovpyh                             | NON_COMPLIANT   | - [x]    |
+| rds-instance-deletion-protection-enabled-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [x]    |
+| rds-logging-enabled-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
+| rds-multi-az-support-conformance-pack-n15lovpyh                           | NON_COMPLIANT   | - [-]    |
+| rds-snapshot-encrypted-conformance-pack-n15lovpyh                         | NON_COMPLIANT   | - [x]    |
+| root-account-hardware-mfa-enabled-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [x]    |
+| s3-account-level-public-access-blocks-periodic-conformance-pack-n15lovpyh | NON_COMPLIANT   | - [x]    |
+| s3-bucket-level-public-access-prohibited-conformance-pack-n15lovpyh       | NON_COMPLIANT   | - [x]    |
+| s3-bucket-logging-enabled-conformance-pack-n15lovpyh                      | NON_COMPLIANT   | - [x]    |
+| s3-bucket-replication-enabled-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [-]    |
+| s3-bucket-ssl-requests-only-conformance-pack-n15lovpyh                    | NON_COMPLIANT   | - [x]    |
+| s3-bucket-versioning-enabled-conformance-pack-n15lovpyh                   | NON_COMPLIANT   | - [x]    |
+| s3-default-encryption-kms-conformance-pack-n15lovpyh                      | NON_COMPLIANT   | - [x]    |
+| securityhub-access-keys-rotated-ba30c708                                  | NON_COMPLIANT   | - [-]    |
+| securityhub-acm-certificate-expiration-check-cb047461                     | NON_COMPLIANT   | - [-]    |
+| securityhub-alb-http-drop-invalid-header-enabled-0aaa842d                 | NON_COMPLIANT   | - [-]    |
+| securityhub-api-gw-associated-with-waf-a6c540a4                           | NON_COMPLIANT   | - [-]    |
+| securityhub-api-gw-execution-logging-enabled-acf1a897                     | NON_COMPLIANT   | - [-]    |
+| securityhub-api-gw-xray-enabled-89e65213                                  | NON_COMPLIANT   | - [-]    |
+| securityhub-athena-workgroup-encrypted-at-rest-30e47b23                   | NON_COMPLIANT   | - [-]    |
+| securityhub-cloudformation-stack-notification-check-43fbe20b              | NON_COMPLIANT   | - [-]    |
+| securityhub-cloudfront-accesslogs-enabled-350e83ed                        | NON_COMPLIANT   | - [-]    |
+| securityhub-cloudfront-associated-with-waf-0345b27b                       | NON_COMPLIANT   | - [-]    |
+| securityhub-cloudfront-origin-failover-enabled-5ab31b54                   | NON_COMPLIANT   | - [-]    |
+| securityhub-cmk-backing-key-rotation-enabled-c18bdca1                     | NON_COMPLIANT   | - [-]    |
+| securityhub-ec2-ebs-encryption-by-default-ebd2a50e                        | NON_COMPLIANT   | - [-]    |
+| securityhub-ec2-imdsv2-check-4ba2c31b                                     | NON_COMPLIANT   | - [-]    |
+| securityhub-ec2-instance-managed-by-ssm-e79e9044                          | NON_COMPLIANT   | - [-]    |
+| securityhub-ecr-private-lifecycle-policy-configured-09745afe              | NON_COMPLIANT   | - [-]    |
+| securityhub-ecr-private-tag-immutability-enabled-f24bf959                 | NON_COMPLIANT   | - [-]    |
+| securityhub-ecs-containers-readonly-access-da5d8660                       | NON_COMPLIANT   | - [-]    |
+| securityhub-elb-deletion-protection-enabled-d776b62b                      | NON_COMPLIANT   | - [-]    |
+| securityhub-elb-logging-enabled-13b7e1c2                                  | NON_COMPLIANT   | - [-]    |
+| securityhub-encrypted-volumes-4e4c2b51                                    | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-password-policy-minimum-length-check-44ba08a7             | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-password-policy-prevent-reuse-check-056d336e              | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-password-policy-recommended-defaults-566175fc             | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-policy-no-statements-with-full-access-11d41704            | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-support-policy-in-use-be710f94                            | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-user-no-policies-check-582bd8c3                           | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-user-unused-credentials-check-45-c9efe739                 | NON_COMPLIANT   | - [-]    |
+| securityhub-iam-user-unused-credentials-check-9b661a22                    | NON_COMPLIANT   | - [-]    |
+| securityhub-lambda-function-settings-check-b0a56c69                       | NON_COMPLIANT   | - [-]    |
+| securityhub-macie-status-check-eb51e4c1                                   | NON_COMPLIANT   | - [-]    |
+| securityhub-mfa-enabled-for-iam-console-access-aa55b2c4                   | NON_COMPLIANT   | - [-]    |
+| securityhub-nacl-no-unrestricted-ssh-rdp-42e3f5ac                         | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-enhanced-monitoring-enabled-0be33cae                      | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-instance-deletion-protection-enabled-db93acf1             | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-instance-iam-authentication-enabled-c3da8d4a              | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-logging-enabled-cd9716f3                                  | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-multi-az-support-f7318c29                                 | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-no-default-ports-ba3614ac                                 | NON_COMPLIANT   | - [-]    |
+| securityhub-rds-snapshot-encrypted-24e515bb                               | NON_COMPLIANT   | - [-]    |
+| securityhub-root-account-hardware-mfa-enabled-d2163a76                    | NON_COMPLIANT   | - [-]    |
+| securityhub-route53-query-logging-enabled-ca127d18                        | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-account-level-public-access-blocks-periodic-7ec66be3       | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-bucket-level-public-access-prohibited-c57ed59b             | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-bucket-logging-enabled-3cdf8dde                            | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-bucket-mfa-delete-enabled-6c08672e                         | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-bucket-ssl-requests-only-f279ff1c                          | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-event-notifications-enabled-07a0d9ce                       | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-lifecycle-policy-check-0c20ff2f                            | NON_COMPLIANT   | - [-]    |
+| securityhub-s3-version-lifecycle-policy-check-3d8b2996                    | NON_COMPLIANT   | - [-]    |
+| securityhub-security-account-information-provided-310d85ec                | NON_COMPLIANT   | - [-]    |
+| securityhub-service-vpc-endpoint-enabled-42382f90                         | NON_COMPLIANT   | - [-]    |
+| securityhub-sns-encrypted-kms-1e9c7e32                                    | NON_COMPLIANT   | - [-]    |
+| securityhub-sns-topic-message-delivery-notification-enabled-39c06e52      | NON_COMPLIANT   | - [-]    |
+| securityhub-subnet-auto-assign-public-ip-disabled-c41f11d9                | NON_COMPLIANT   | - [-]    |
+| securityhub-vpc-default-security-group-closed-71e26362                    | NON_COMPLIANT   | - [-]    |
+| securityhub-vpc-flow-logs-enabled-63f23ae0                                | NON_COMPLIANT   | - [-]    |
+| subnet-auto-assign-public-ip-disabled-conformance-pack-n15lovpyh          | NON_COMPLIANT   | - [-]    |
+| vpc-default-security-group-closed-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [x]    |
+| vpc-flow-logs-enabled-conformance-pack-n15lovpyh                          | NON_COMPLIANT   | - [-]    |
+| vpc-sg-open-only-to-authorized-ports-conformance-pack-n15lovpyh           | NON_COMPLIANT   | - [-]    |
