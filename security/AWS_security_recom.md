@@ -17,7 +17,7 @@ This document outlines security improvements to harden resources, services, and 
 
 ### 3. Secure Your Data
 
-- **Encryption**: Leverage AWS Key Management Service (KMS) for encryption key management and rotation. Ensure encryption of data at rest and in transit across all services (e.g., S3, EBS, RDS).
+- **Encryption**: Leverage AWS Key Management Service (KMS) for encryption key management and rotation. Ensure encryption of data at rest and in transit across all services (e.g., EBS, RDS).
 - **Data Backup**: Employ regular data backup strategies using AWS Backup or similar services to safeguard against data loss.
 
 ### 4. Network Security
