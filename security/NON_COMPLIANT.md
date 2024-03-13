@@ -6,10 +6,10 @@
 | acm-certificate-expiration-check-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
 | alb-waf-enabled-conformance-pack-n15lovpyh                                | NON_COMPLIANT   | - [x]    |
 | api-gw-associated-with-waf-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [x]    |
-| api-gw-cache-enabled-and-encrypted-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [x]    |
+| api-gw-cache-enabled-and-encrypted-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [?]    |
 | api-gw-execution-logging-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
 | cloudwatch-alarm-action-check-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [x]    |
-| cmk-backing-key-rotation-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [x]    |
+| cmk-backing-key-rotation-enabled-conformance-pack-n15lovpyh               | NON_COMPLIANT   | - [-]    |
 | cw-loggroup-retention-period-check-conformance-pack-n15lovpyh             | NON_COMPLIANT   | - [x]    |
 | ebs-in-backup-plan-conformance-pack-n15lovpyh                             | NON_COMPLIANT   | - [-]    |
 | ec2-ebs-encryption-by-default-conformance-pack-n15lovpyh                  | NON_COMPLIANT   | - [-]    |
@@ -21,10 +21,10 @@
 | elb-logging-enabled-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
 | encrypted-volumes-conformance-pack-n15lovpyh                              | NON_COMPLIANT   | - [-]    |
 | iam-customer-policy-blocked-kms-actions-conformance-pack-n15lovpyh        | NON_COMPLIANT   | - [-]    |
-| iam-no-inline-policy-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [x]    |
+| iam-no-inline-policy-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [-]    |
 | iam-password-policy-conformance-pack-n15lovpyh                            | NON_COMPLIANT   | - [x]    |
-| iam-policy-no-statements-with-admin-access-conformance-pack-n15lovpyh     | NON_COMPLIANT   | - [x]    |
-| iam-policy-no-statements-with-full-access-conformance-pack-n15lovpyh      | NON_COMPLIANT   | - [x]    |
+| iam-policy-no-statements-with-admin-access-conformance-pack-n15lovpyh     | NON_COMPLIANT   | - [-]    |
+| iam-policy-no-statements-with-full-access-conformance-pack-n15lovpyh      | NON_COMPLIANT   | - [-]    |
 | iam-user-group-membership-check-conformance-pack-n15lovpyh                | NON_COMPLIANT   | - [x]    |
 | iam-user-mfa-enabled-conformance-pack-n15lovpyh                           | NON_COMPLIANT   | - [x]    |
 | iam-user-no-policies-check-conformance-pack-n15lovpyh                     | NON_COMPLIANT   | - [-]    |
@@ -105,7 +105,7 @@
 | securityhub-subnet-auto-assign-public-ip-disabled-c41f11d9                | NON_COMPLIANT   | - [-]    |
 | securityhub-vpc-default-security-group-closed-71e26362                    | NON_COMPLIANT   | - [-]    |
 | securityhub-vpc-flow-logs-enabled-63f23ae0                                | NON_COMPLIANT   | - [-]    |
-| subnet-auto-assign-public-ip-disabled-conformance-pack-n15lovpyh          | NON_COMPLIANT   | - [-]    |
+| subnet-auto-assign-public-ip-disabled-conformance-pack-n15lovpyh          | NON_COMPLIANT   | - [x]    |
 | vpc-default-security-group-closed-conformance-pack-n15lovpyh              | NON_COMPLIANT   | - [x]    |
 | vpc-flow-logs-enabled-conformance-pack-n15lovpyh                          | NON_COMPLIANT   | - [-]    |
 | vpc-sg-open-only-to-authorized-ports-conformance-pack-n15lovpyh           | NON_COMPLIANT   | - [-]    |
