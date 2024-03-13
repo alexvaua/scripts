@@ -34,9 +34,14 @@ This document outlines security improvements to harden resources, services, and 
 
 - **(Automated)Vulnerability Scans**: Conduct internal vulnerability scans within your VPC using tools like OpenVAS [OpenVAS](https://www.openvas.org) on a regular basis to identify and mitigate potential vulnerabilities - [probely](https://probely.com).
 
+### 7. Vulnerability Scanning and rotation plan
+
+- **(Automated)Vulnerability Scans**: Integrate a image scan in to CI pipeline
+- **Establish upgrade plan**: Make sure that you have a back log with rotate and decommission docker images with CRITICAL, HIGH vulnerabilities with at least fixable ones.
+
 - **(Manual)Penetration Tests**: Engage in penetration testing through bug bounty programs such as HackerOne's Bug Bounty Platform [HackerOne](https://www.hackerone.com/product/bug-bounty-platform), to uncover and rectify security vulnerabilities before they can be exploited.
 
-### 7. Regular Audits and Continuous Improvement
+### 8. Regular Audits and Continuous Improvement
 
 - **Stay Informed**: Keep abreast of AWS security announcements and best practices. Continuously update and patch services and applications deployed on AWS.
 
