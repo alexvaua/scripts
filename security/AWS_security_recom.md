@@ -44,6 +44,7 @@ This document outlines security improvements to harden resources, services, and 
 ### 8. Compliance and Best Practices (Inspector, AWS config, SecurityHub)
 
 - Please follow the recommendations collected in Security hub and config rules in order to plan security adjustments according to the [table](./NON_COMPLIANT.md)
+- Priorities actions to fix issues according to Security Hub [filter](https://us-east-1.console.aws.amazon.com/securityhub/home?region=us-east-1#/findings?search=SeverityLabel%3D%255Coperator%255C%253AEQUALS%255C%253ACRITICAL%26Title%3D%255Coperator%255C%253APREFIX_NOT_EQUALS%255C%253ACVE%26Region%3Dus-east-1%26WorkflowStatus%3D%255Coperator%255C%253AEQUALS%255C%253ANEW%26WorkflowStatus%3D%255Coperator%255C%253AEQUALS%255C%253ANOTIFIED%26RecordState%3D%255Coperator%255C%253AEQUALS%255C%253AACTIVE%26SeverityLabel%3D%255Coperator%255C%253AEQUALS%255C%253AHIGH)
 
 ### 9. Code delivery protection
 
