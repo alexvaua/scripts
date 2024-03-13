@@ -41,7 +41,11 @@ This document outlines security improvements to harden resources, services, and 
 - **Develop/implement upgrade plan**: Make sure that you have a back log with rotate and decommission docker images with CRITICAL, HIGH vulnerabilities with at least fixable ones.
 - **Upgrade and rotate EC2 AMI**: Establish the pipeline to continuously upgrade and rotate AMI for any EC2 workload.
 
-### 8. Code delivery protection
+### 8. Compliance and Best Practices (Inspector, AWS config, SecurityHub)
+
+- Please follow the recommendations collected in Security hub and config rules in order to plan security adjustments according to the [table](./NON_COMPLIANT.md)
+
+### 9. Code delivery protection
 
 - **Access Control**: Limit access to repositories based on the principle of least privilege, setup branch protection for the main branche, no one can push directly in main only via PR/MR.
 - **Two-Factor Authentication (2FA)**: Enforce 2FA for accessing code repositories.
