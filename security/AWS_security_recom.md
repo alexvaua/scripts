@@ -33,15 +33,31 @@ This document outlines security improvements to harden resources, services, and 
 ### 6. Penetration Testing & Vulnerability Scanning
 
 - **(Automated)Vulnerability Scans**: Conduct internal vulnerability scans within your VPC using tools like OpenVAS [OpenVAS](https://www.openvas.org) on a regular basis to identify and mitigate potential vulnerabilities - [probely](https://probely.com).
+- **(Manual)Penetration Tests**: Engage in penetration testing through bug bounty programs such as HackerOne's Bug Bounty Platform [HackerOne](https://www.hackerone.com/product/bug-bounty-platform), to uncover and rectify security vulnerabilities before they can be exploited.
 
 ### 7. Vulnerability Scanning and rotation plan
 
 - **(Automated)Vulnerability Scans**: Integrate a image scan in to CI pipeline
-- **Establish upgrade plan**: Make sure that you have a back log with rotate and decommission docker images with CRITICAL, HIGH vulnerabilities with at least fixable ones.
+- **Develop/implement upgrade plan**: Make sure that you have a back log with rotate and decommission docker images with CRITICAL, HIGH vulnerabilities with at least fixable ones.
+- **Upgrade and rotate EC2 AMI**: Establish the pipeline to continuously upgrade and rotate AMI for any EC2 workload.
 
-- **(Manual)Penetration Tests**: Engage in penetration testing through bug bounty programs such as HackerOne's Bug Bounty Platform [HackerOne](https://www.hackerone.com/product/bug-bounty-platform), to uncover and rectify security vulnerabilities before they can be exploited.
+### 8. Code delivery protection
 
-### 8. Regular Audits and Continuous Improvement
+- **Access Control**: Limit access to repositories based on the principle of least privilege, setup branch protection for the main branche, no one can push directly in main only via PR/MR.
+- **Two-Factor Authentication (2FA)**: Enforce 2FA for accessing code repositories.
+- **Pipeline Security**: Ensure CI/CD pipelines are secure by design, with restricted access to the pipeline environment.
+- **Automated Testing**: Incorporate automated security testing and code analysis tools into the CI/CD pipeline to detect vulnerabilities early.
+- **Peer Reviews**: Implement mandatory peer reviews to identify security flaws and coding errors before code merges, only reviewer can approve PR not commiter.
+- **Immutable Artifacts**: Use immutable artifacts for deployment to ensure that the code cannot be tampered with after it has been built.
+
+> **Tools and Technologies**: Leveraging tools that integrate with your development and deployment stack can significantly enhance code delivery protection. Proposed:
+
+- Secrets Management: AWS SSM parameter store, AWS Secrets Manager.
+- Code Analysis: SonarQube, Fortify, Checkmarx.
+- CI/CD Tools: Consider GitHub Actions with security plugins or extensions insted of CircleCI.
+- Monitoring and Alerting: CloudWatch, Slack, possible Panther.
+
+### 9. Regular Audits and Continuous Improvement
 
 - **Stay Informed**: Keep abreast of AWS security announcements and best practices. Continuously update and patch services and applications deployed on AWS.
 
