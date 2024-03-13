@@ -43,7 +43,7 @@ This document outlines security improvements to harden resources, services, and 
 
 ### 8. Compliance and Best Practices (Inspector, AWS config, SecurityHub)
 
-- Please follow the recommendations collected in Security hub and config rules in order to plan security adjustments according to the [table](./NON_COMPLIANT.md)
+- Please follow the recommendations collected in Security hub and config rules in order to plan security adjustments according to the [table](./sec_docs/NON_COMPLIANT.md)
 - Priorities actions to fix issues according to Security Hub [filter](https://us-east-1.console.aws.amazon.com/securityhub/home?region=us-east-1#/findings?search=SeverityLabel%3D%255Coperator%255C%253AEQUALS%255C%253ACRITICAL%26Title%3D%255Coperator%255C%253APREFIX_NOT_EQUALS%255C%253ACVE%26Region%3Dus-east-1%26WorkflowStatus%3D%255Coperator%255C%253AEQUALS%255C%253ANEW%26WorkflowStatus%3D%255Coperator%255C%253AEQUALS%255C%253ANOTIFIED%26RecordState%3D%255Coperator%255C%253AEQUALS%255C%253AACTIVE%26SeverityLabel%3D%255Coperator%255C%253AEQUALS%255C%253AHIGH)
 
 ### 9. Code/IaC delivery protection
@@ -62,7 +62,14 @@ This document outlines security improvements to harden resources, services, and 
 - CI/CD Tools: Consider GitHub Actions with security plugins or extensions insted of CircleCI.
 - Monitoring and Alerting: CloudWatch, Slack, possible Panther.
 
-### 10. Regular Audits and Continuous Improvement
+### 10. Application security
+
+- **Auth logs**: Make sure to have authentication logs detailed enough to investigate possible incidents.
+Consider on authentication logging strategy for example [here](./sec_docs/auth_logs.md)
+- **App logs**: Important to have application logs with accurate data marks that corelated with auth logs in the same format.
+Consider on application logging strategy for example [here](./sec_docs/app_logs.md)
+
+### 11. Regular Audits and Continuous Improvement
 
 - **Incorporate security adjustments in to IaC**: Avoid manual fixes - Consider to implement or extend infrastructure templates according to security recommengations, that will help to avoid potential mistaces and save time in a future.
 
