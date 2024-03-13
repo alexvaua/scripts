@@ -62,7 +62,9 @@ This document outlines security improvements to harden resources, services, and 
 - CI/CD Tools: Consider GitHub Actions with security plugins or extensions insted of CircleCI.
 - Monitoring and Alerting: CloudWatch, Slack, possible Panther.
 
-### 9. Regular Audits and Continuous Improvement
+### 10. Regular Audits and Continuous Improvement
+
+- **Incorporate security adjustments in to IaC**: Avoid manual fixes - Consider to implement or extend infrastructure templates according to security recommengations, that will help to avoid potential mistaces and save time in a future.
 
 - **Stay Informed**: Keep abreast of AWS security announcements and best practices. Continuously update and patch services and applications deployed on AWS.
 
