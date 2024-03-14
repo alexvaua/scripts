@@ -7,7 +7,9 @@ jobs:
   build:
     name: test
     runs-on: ubuntu-latest
-    permissions: read-all
+    permissions:
+        id-token: write
+        contents: read
     steps:
     - name: Configure AWS Credentials 1
       id: creds
