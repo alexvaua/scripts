@@ -1,0 +1,24 @@
+name: test
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  build:
+    name: test
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+    - name: Configure AWS Credentials 1
+      id: creds
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-east-2
+        role-to-assume: arn:aws:iam::800415522537:role/alexvaua-s3-test
+        output-credentials: true
+    - name: get caller identity 1
+      run: |
+        aws sts get-caller-identity
+
